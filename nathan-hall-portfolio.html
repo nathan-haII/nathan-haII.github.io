@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathan Hall — Computer Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --bg: #0D0E10;
+    --bg-panel: #17181B;
+    --ink: #F1F0EA;
+    --muted: #8B8D93;
+    --line: #2A2B2F;
+    --accent: #FF8A3D;
+    --accent-soft: #3A2917;
+    --accent-ink: #14100A;
+    --font-display: 'Space Grotesk', 'Arial Narrow', sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #F4F3EE;
+      --bg-panel: #FFFFFF;
+      --ink: #17181B;
+      --muted: #6C6E74;
+      --line: #DEDCD3;
+      --accent: #D9660B;
+      --accent-soft: #FCE6D2;
+      --accent-ink: #FFFFFF;
+    }
+  }
+
+  :root[data-theme="light"] {
+    --bg: #F4F3EE;
+    --bg-panel: #FFFFFF;
+    --ink: #17181B;
+    --muted: #6C6E74;
+    --line: #DEDCD3;
+    --accent: #D9660B;
+    --accent-soft: #FCE6D2;
+    --accent-ink: #FFFFFF;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--accent); color: var(--accent-ink); }
+  a { color: inherit; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 236px 1fr;
+    min-height: 100vh;
+  }
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Sidebar ---------- */
+
+  .sidebar {
+    border-right: 1px solid var(--line);
+    padding: 40px 28px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 860px) {
+    .sidebar {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--line);
+      flex-direction: row;
+      align-items: center;
+      padding: 18px 24px;
+    }
+  }
+
+  .side-top { display: flex; flex-direction: column; gap: 44px; }
+
+  @media (max-width: 860px) {
+    .side-top { flex-direction: row; align-items: center; gap: 24px; width: 100%; justify-content: space-between; }
+  }
+
+  .brand {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .brand .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  @media (max-width: 860px) {
+    .side-nav { display: none; }
+  }
+
+  .side-nav a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    padding: 7px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color .15s ease;
+  }
+  .side-nav a .idx {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--line);
+  }
+  .side-nav a:hover { color: var(--ink); }
+  .side-nav a:hover .idx { color: var(--accent); }
+
+  .side-bottom {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 860px) { .side-bottom { display: none; } }
+
+  .status-line {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .status-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #4ADE80;
+  }
+
+  /* ---------- Main content ---------- */
+
+  main { padding: 0 0 40px; }
+
+  .content-wrap {
+    max-width: 700px;
+    padding: 0 44px;
+  }
+
+  @media (max-width: 860px) { .content-wrap { padding: 0 28px; } }
+  @media (max-width: 480px) { .content-wrap { padding: 0 20px; } }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 76px 0 56px;
+  }
+
+  .console {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  .console .prompt { color: var(--accent); }
+
+  h1.name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(38px, 6vw, 60px);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+  }
+
+  h1.name::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    top: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: sweep 1.1s cubic-bezier(.65,0,.35,1) forwards;
+    animation-delay: .15s;
+  }
+
+  @keyframes sweep {
+    0% { transform: scaleX(0); top: 0; }
+    45% { transform: scaleX(1); top: 0; }
+    55% { top: 100%; }
+    100% { transform: scaleX(1); top: 100%; }
+  }
+
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--accent);
+    margin: 20px 0 0;
+  }
+
+  .hero-tagline {
+    font-size: 18px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 16px 0 0;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .pill-link {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    padding: 9px 16px;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    color: var(--ink);
+    transition: border-color .15s ease, background .15s ease, color .15s ease;
+  }
+  .pill-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  .pill-link.primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .pill-link.primary:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+
+  /* ---------- Sections ---------- */
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+
+  .section-head { margin-bottom: 30px; }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+
+  /* ---------- About ---------- */
+
+  .about-body { max-width: 600px; font-size: 16.5px; }
+  .about-body p { margin: 0 0 16px; color: var(--ink); }
+  .about-body p:last-child { margin-bottom: 0; }
+
+  /* ---------- Skills ---------- */
+
+  .skill-group { margin-bottom: 26px; }
+  .skill-group:last-child { margin-bottom: 0; }
+  .skill-label { font-size: 13px; color: var(--muted); margin: 0 0 12px; }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    padding: 7px 12px;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+  }
+
+  /* ---------- Projects ---------- */
+
+  .project-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 30px;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 480px) { .project-card { padding: 20px; } }
+
+  h3.project-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 14px;
+  }
+
+  .project-desc { color: var(--muted); max-width: 62ch; margin: 0 0 20px; }
+
+  /* detection-grid visual */
+  .detect-visual {
+    position: relative;
+    max-width: 300px;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    margin: 6px 0 20px;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 25% 33.3%,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 25% 33.3%,
+      var(--bg);
+    overflow: hidden;
+  }
+  .detect-box {
+    position: absolute;
+    border: 1.5px solid var(--accent);
+    top: 28%; left: 22%; width: 46%; height: 48%;
+  }
+  .detect-box::before {
+    content: 'doc  0.97';
+    position: absolute;
+    top: -20px; left: -1.5px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    background: var(--accent);
+    color: var(--accent-ink);
+    padding: 2px 5px;
+    white-space: nowrap;
+  }
+  .detect-box::after {
+    content: '';
+    position: absolute;
+    inset: -1.5px;
+    border: 1.5px solid var(--accent);
+  }
+
+  .tech-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .tech-chip {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    padding: 4px 10px;
+    background: var(--accent-soft);
+    color: var(--ink);
+    border-radius: 3px;
+  }
+
+  .project-links a {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .project-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  .more-card {
+    border: 1px dashed var(--line);
+    border-radius: 6px;
+    padding: 26px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .more-card p { margin: 0; color: var(--muted); max-width: 44ch; }
+
+  /* ---------- Footer ---------- */
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 60px; }
+  .footer-note { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+  a:focus-visible, .pill-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    h1.name::after { animation: none; transform: scaleX(1); top: 100%; }
+  }
+
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="side-top">
+      <a class="brand" href="#top"><span class="dot"></span>nathan hall</a>
+      <nav class="side-nav">
+        <a href="#about"><span class="idx">01</span>About</a>
+        <a href="#skills"><span class="idx">02</span>Skills</a>
+        <a href="#projects"><span class="idx">03</span>Projects</a>
+        <a href="#contact"><span class="idx">04</span>Contact</a>
+      </nav>
+    </div>
+    <div class="side-bottom">
+      <div class="status-line"><span class="status-dot"></span>open to internships</div>
+      <div>McMaster University</div>
+    </div>
+  </aside>
+
+  <main id="top">
+    <div class="content-wrap">
+
+      <section class="hero" style="border-top:none;">
+        <p class="console"><span class="prompt">&gt;</span> loading profile: nathan_hall.py</p>
+        <h1 class="name">Nathan Hall</h1>
+        <p class="hero-role">Computer Science — McMaster University</p>
+        <p class="hero-tagline">
+          I build practical software and I'm working toward computer vision
+          and anomaly detection — currently exploring that space through data
+          science fundamentals and hands-on OpenCV projects.
+        </p>
+        <div class="hero-links">
+          <a class="pill-link primary" href="mailto:your.email@mcmaster.ca">email me</a>
+          <a class="pill-link" href="https://github.com/nathan-haII" target="_blank" rel="noopener">github</a>
+          <a class="pill-link" href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener">linkedin</a>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="section-head">
+          <span class="section-eyebrow">01 / about</span>
+          <h2 class="section-title">About</h2>
+        </div>
+        <div class="about-body">
+          <p>
+            I'm a Computer Science student at McMaster University, focused on
+            building practical software and growing as an engineer. Most of
+            my current work sits at the intersection of computer vision and
+            data — I like taking a messy, real-world input and writing code
+            that turns it into something clean and structured.
+          </p>
+          <p>
+            I'm particularly drawn to computer vision and anomaly detection:
+            problems where the interesting part is teaching a system to
+            notice what doesn't belong. Outside of coursework, I'm building
+            up a portfolio of small, complete projects rather than one big
+            unfinished one — the document scanner below is the first of
+            those.
+          </p>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-head">
+          <span class="section-eyebrow">02 / skills</span>
+          <h2 class="section-title">Skills</h2>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-label">Languages</p>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Java</span>
+            <span class="chip">C++</span>
+            <span class="chip">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-label">Computer vision &amp; data</p>
+          <div class="chip-row">
+            <span class="chip">OpenCV</span>
+            <span class="chip">NumPy</span>
+            <span class="chip">scikit-image</span>
+            <span class="chip">imutils</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-label">Tools</p>
+          <div class="chip-row">
+            <span class="chip">Git</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head">
+          <span class="section-eyebrow">03 / projects</span>
+          <h2 class="section-title">Featured projects</h2>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Document Scanner</h3>
+          <p class="project-desc">
+            A Python command-line tool that turns a photo of a document into
+            a clean, top-down, black-and-white scan. It finds the document's
+            edges, corrects the perspective so the page looks flat and
+            squared-off, then applies adaptive thresholding to produce that
+            true "scanned" look.
+          </p>
+
+          <div class="detect-visual" aria-hidden="true">
+            <div class="detect-box"></div>
+          </div>
+
+          <div class="tech-row">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">OpenCV</span>
+            <span class="tech-chip">NumPy</span>
+            <span class="tech-chip">scikit-image</span>
+            <span class="tech-chip">imutils</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="more-card">
+          <p>More projects are in progress, including work in anomaly detection and data science. Check GitHub for the latest.</p>
+          <a class="pill-link" href="https://github.com/nathan-haII" target="_blank" rel="noopener">see all repos</a>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-head">
+          <span class="section-eyebrow">04 / contact</span>
+          <h2 class="section-title">Get in touch</h2>
+        </div>
+        <p class="about-body" style="margin-bottom:26px;">
+          I'm looking for internships and opportunities to work on computer
+          vision and data problems. Feel free to reach out.
+        </p>
+        <div class="hero-links">
+          <a class="pill-link primary" href="mailto:your.email@mcmaster.ca">email me</a>
+          <a class="pill-link" href="https://github.com/nathan-haII" target="_blank" rel="noopener">github</a>
+          <a class="pill-link" href="https://linkedin.com/in/your-linkedin" target="_blank" rel="noopener">linkedin</a>
+        </div>
+      </section>
+
+      <footer>
+        <span class="footer-note">built by nathan hall · 2026</span>
+      </footer>
+
+    </div>
+  </main>
+
+</div>
+
+</body>
+</html>
