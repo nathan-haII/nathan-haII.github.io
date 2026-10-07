@@ -365,6 +365,36 @@
     border: 1.5px solid var(--accent);
   }
 
+  /* project example figures */
+  .figure-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    margin: 6px 0 24px;
+  }
+  figure.project-figure { margin: 0 0 24px; }
+  .figure-grid figure.project-figure { margin: 0; }
+  .project-figure .frame {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    line-height: 0;
+  }
+  .project-figure img { display: block; max-width: 100%; height: auto; }
+  .project-figure figcaption {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 10px;
+    max-width: 52ch;
+    line-height: 1.5;
+  }
+  figure.fig-wide { max-width: 560px; }
+  figure.fig-tall { max-width: 260px; }
+  figure.fig-flex { flex: 1 1 280px; max-width: 420px; }
+
   .tech-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
   .tech-chip {
     font-family: var(--font-mono);
@@ -498,6 +528,7 @@
             <span class="chip">OpenCV</span>
             <span class="chip">NumPy</span>
             <span class="chip">scikit-image</span>
+            <span class="chip">scikit-learn</span>
             <span class="chip">imutils</span>
           </div>
         </div>
@@ -526,9 +557,13 @@
             true "scanned" look.
           </p>
 
-          <div class="detect-visual" aria-hidden="true">
-            <div class="detect-box"></div>
-          </div>
+          <figure class="project-figure fig-wide">
+            <div class="frame">
+              <img src="images/document-scanner-example.jpg" width="1000" height="729" loading="lazy"
+                   alt="Side-by-side comparison: a phone photo of a crumpled grocery receipt on a dark table, and the cleaned black-and-white top-down scan of it.">
+            </div>
+            <figcaption>Input photo (left) and scanned output (right).</figcaption>
+          </figure>
 
           <div class="tech-row">
             <span class="tech-chip">Python</span>
@@ -540,6 +575,48 @@
 
           <div class="project-links">
             <a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <h3 class="project-title">Ontario License Plate Scanner</h3>
+          <p class="project-desc">
+            A classical computer-vision pipeline that finds and reads Ontario
+            license plates in photos, with no deep learning. It localizes the
+            plate using edge detection and connected components, segments the
+            characters with adaptive thresholding, and classifies each 20×20
+            crop with a Support Vector Classifier. A post-processing step uses
+            the 4-letter, 3-digit plate format to fix confusable characters
+            like 0/O and 5/S.
+          </p>
+
+          <div class="figure-grid">
+            <figure class="project-figure fig-tall">
+              <div class="frame">
+                <img src="images/plate-localization.png" width="340" height="419" loading="lazy"
+                     alt="Grayscale photo of the rear of an SUV with two red boxes drawn on it: one around the license plate and one around the badge above it.">
+              </div>
+              <figcaption>1. Localization. Candidate regions are boxed; the badge is a false positive, so the pipeline keeps the region that yields 7 characters.</figcaption>
+            </figure>
+            <figure class="project-figure fig-flex">
+              <div class="frame">
+                <img src="images/plate-segmentation.png" width="549" height="250" loading="lazy"
+                     alt="Black-and-white thresholded crop of a license plate with red boxes around each of the seven characters.">
+              </div>
+              <figcaption>2. Segmentation. Adaptive thresholding and connected components isolate the 7 characters, each resized to 20×20 for the classifier.</figcaption>
+            </figure>
+          </div>
+
+          <div class="tech-row">
+            <span class="tech-chip">Python</span>
+            <span class="tech-chip">scikit-image</span>
+            <span class="tech-chip">scikit-learn</span>
+            <span class="tech-chip">NumPy</span>
+            <span class="tech-chip">Matplotlib</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/nathan-haII/Ontario-License-Plate-Scanner" target="_blank" rel="noopener">View on GitHub →</a>
           </div>
         </div>
 
