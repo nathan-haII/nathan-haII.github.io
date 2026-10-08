@@ -45,4 +45,4 @@ This repo is deployed with [GitHub Pages](https://pages.github.com/):
 
 - Email: your.email@mcmaster.ca <!-- update -->
 - GitHub: [@nathan-haII](https://github.com/nathan-haII)
-- LinkedIn: [your-linkedin](https://linkedin.com/in/your-linkedin) <!-- update -->
+- LinkedIn: https://www.linkedin.com/in/nathan-hall-7092602b7/
