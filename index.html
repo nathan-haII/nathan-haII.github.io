@@ -3,411 +3,273 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nathan Hall — Computer Science</title>
-<meta name="description" content="Nathan Hall, Computer Science student at McMaster University working on computer vision and anomaly detection.">
+<title>Nathan Hall, Computer Science at McMaster University</title>
+<meta name="description" content="Nathan Hall is a Computer Science student at McMaster University who builds computer vision tools and baseball analytics projects.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F5F8FC;
-    --panel: #FFFFFF;
-    --ink: #16202E;
-    --muted: #5B677A;
-    --line: #DDE4EE;
-    --accent: #2563EB;
-    --accent-dark: #1D4ED8;
-    --accent-soft: #E6EEFD;
-    --mint: #0F9D8A;
-    --font-display: 'Bricolage Grotesque', 'Arial Narrow', sans-serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
-    --shadow: 0 1px 2px rgba(22,32,46,.04), 0 8px 24px -12px rgba(22,32,46,.12);
+    --wash: #EAF4FB;
+    --baby: #BFE0F5;
+    --baby-deep: #8CC3E8;
+    --ink: #12293D;
+    --muted: #46607A;
+    --link: #1B5E92;
+    --rule: #B5D6EC;
+    --display: 'Archivo', 'Arial Narrow', Arial, sans-serif;
+    --body: 'Source Sans 3', Georgia, 'Segoe UI', sans-serif;
   }
-
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 84px; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 16px/1.65 var(--font-body);
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  ::selection { background: var(--accent); color: #fff; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--wash); color: var(--ink); font: 18px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  ::selection { background: var(--baby-deep); }
   .wrap { max-width: 1040px; margin: 0 auto; padding: 0 28px; }
   @media (max-width: 520px) { .wrap { padding: 0 20px; } }
-
-  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 6px; z-index: 50; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--ink); color: #fff; padding: 8px 14px; z-index: 10; }
   .skip:focus { left: 12px; }
 
-  /* ---------- Header ---------- */
-  header.top {
-    position: sticky; top: 0; z-index: 20;
-    background: rgba(245,248,252,.86);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-  }
-  .top-in { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 20px; }
-  .brand { font-family: var(--font-display); font-weight: 700; font-size: 19px; text-decoration: none; letter-spacing: -.01em; }
-  nav.main-nav { display: flex; gap: 4px; }
-  nav.main-nav a {
-    text-decoration: none; font-size: 14.5px; font-weight: 500; color: var(--muted);
-    padding: 8px 14px; border-radius: 999px; transition: background .15s, color .15s;
-  }
-  nav.main-nav a:hover { background: var(--accent-soft); color: var(--accent-dark); }
-  nav.main-nav a.active { background: var(--accent-soft); color: var(--accent-dark); }
-  @media (max-width: 560px) {
-    nav.main-nav a { padding: 7px 9px; font-size: 13.5px; }
-    .brand { font-size: 17px; }
-  }
+  .band { background: var(--baby); padding-bottom: 72px; }
+  .bar { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0 0; flex-wrap: wrap; }
+  .bar a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  .bar a:hover { text-decoration: underline; }
+  .bar nav { display: flex; gap: 22px; }
+  h1 { font: 700 clamp(54px, 10vw, 112px)/.95 var(--display); letter-spacing: -.035em; margin: 88px 0 28px; }
+  .intro { font-size: 22px; line-height: 1.5; max-width: 34em; margin: 0 0 14px; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 26px; margin-top: 26px; font-weight: 600; }
+  .links a { color: var(--ink); text-decoration-color: var(--link); }
+  @media (max-width: 560px) { h1 { margin-top: 56px; } .intro { font-size: 20px; } }
 
-  /* ---------- Buttons ---------- */
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font: 500 14.5px/1 var(--font-body);
-    padding: 13px 20px; border-radius: 10px;
-    border: 1px solid var(--line); background: var(--panel); color: var(--ink);
-    text-decoration: none; cursor: pointer;
-    transition: transform .15s, border-color .15s, background .15s;
-  }
-  .btn:hover { border-color: var(--accent); transform: translateY(-1px); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+  section { padding: 72px 0 8px; }
+  h2 { font: 700 clamp(30px, 4.5vw, 46px)/1.1 var(--display); letter-spacing: -.02em; margin: 0 0 30px; }
+  h3 { font: 700 24px/1.2 var(--display); letter-spacing: -.01em; margin: 0 0 12px; }
+  p { margin: 0 0 16px; max-width: 62ch; }
+  .built { color: var(--muted); font-size: 16px; }
 
-  /* ---------- Hero ---------- */
-  .hero { padding: 80px 0 72px; }
-  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 56px; align-items: center; }
-  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 44px; } .hero { padding: 52px 0 48px; } }
-
-  .status {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-size: 13.5px; font-weight: 500; color: #0B6B5E;
-    background: #E3F6F2; padding: 6px 14px 6px 12px; border-radius: 999px; margin-bottom: 26px;
-  }
-  .status i { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); display: block; box-shadow: 0 0 0 3px rgba(15,157,138,.2); }
-
-  h1.name {
-    font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(42px, 7vw, 72px); line-height: 1; letter-spacing: -.03em; margin: 0;
-  }
-  .role { font-size: 18px; font-weight: 500; color: var(--accent-dark); margin: 18px 0 0; }
-  .tagline { font-size: 18px; color: var(--muted); max-width: 52ch; margin: 14px 0 0; }
-  .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
-
-  /* Viewfinder: the one memorable element */
-  .viewfinder {
-    position: relative; aspect-ratio: 1 / 1; max-width: 380px; width: 100%; justify-self: center;
-    background:
-      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 12.5%,
-      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 12.5% 100%,
-      var(--panel);
-    border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--shadow); overflow: hidden;
-  }
-  .vf-box { position: absolute; border: 2px solid var(--accent); border-radius: 6px; opacity: 0; animation: lock .5s ease forwards; }
-  .vf-box span {
-    position: absolute; top: -1px; left: -2px; transform: translateY(-100%);
-    font: 500 11px/1 var(--font-mono); background: var(--accent); color: #fff; padding: 5px 7px; border-radius: 5px 5px 5px 0; white-space: nowrap;
-  }
-  .vf-box.b1 { top: 14%; left: 12%; width: 52%; height: 28%; animation-delay: .4s; }
-  .vf-box.b2 { top: 52%; left: 30%; width: 56%; height: 20%; border-color: var(--mint); animation-delay: .9s; }
-  .vf-box.b2 span { background: var(--mint); }
-  .vf-box.b3 { top: 78%; left: 12%; width: 30%; height: 12%; border-color: #E0852B; animation-delay: 1.4s; }
-  .vf-box.b3 span { background: #E0852B; }
-  .vf-text { position: absolute; left: 14%; top: 20%; font: 700 clamp(22px, 4vw, 30px)/1.1 var(--font-display); letter-spacing: -.02em; }
-  .vf-text small { display: block; font: 400 12px/1.4 var(--font-mono); color: var(--muted); margin-top: 6px; }
-  @keyframes lock { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
-
-  /* ---------- Sections ---------- */
-  section.block { padding: 72px 0; border-top: 1px solid var(--line); }
-  h2.title { font-family: var(--font-display); font-weight: 700; font-size: clamp(28px, 4vw, 38px); letter-spacing: -.02em; line-height: 1.1; margin: 0 0 12px; }
-  .lead { color: var(--muted); max-width: 56ch; margin: 0 0 36px; font-size: 17px; }
-
-  /* About */
-  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
-  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
-  .about-grid p { margin: 0 0 16px; font-size: 17px; max-width: 60ch; }
-  .facts { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow); align-self: start; }
-  .facts dl { margin: 0; display: grid; gap: 16px; }
-  .facts dt { font-size: 13px; color: var(--muted); }
-  .facts dd { margin: 2px 0 0; font-weight: 500; }
-
-  /* Skills */
-  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  @media (max-width: 860px) { .skills { grid-template-columns: 1fr; } }
-  .skill { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
-  .skill h3 { font: 700 17px/1.2 var(--font-display); margin: 0 0 16px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip { font: 400 13px/1 var(--font-mono); padding: 8px 11px; background: var(--bg); border: 1px solid var(--line); border-radius: 8px; }
-
-  /* Projects */
-  .project {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 20px;
-    padding: 36px; margin-bottom: 24px; box-shadow: var(--shadow);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start;
-  }
-  @media (max-width: 860px) { .project { grid-template-columns: 1fr; padding: 24px; gap: 24px; } }
-  .project h3 { font: 700 26px/1.15 var(--font-display); letter-spacing: -.015em; margin: 0 0 12px; }
-  .project p { color: var(--muted); margin: 0 0 20px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
-  .tag { font: 500 12px/1 var(--font-mono); padding: 6px 9px; background: var(--accent-soft); color: var(--accent-dark); border-radius: 6px; }
-  .figs { display: grid; gap: 14px; }
-  .figs.two { grid-template-columns: 1fr 1.5fr; align-items: start; }
-  @media (max-width: 520px) { .figs.two { grid-template-columns: 1fr; } }
-  figure { margin: 0; }
-  .frame { background: #fff; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; line-height: 0; }
+  .work { border-top: 1px solid var(--rule); padding: 44px 0; }
+  .work:first-of-type { border-top: 0; padding-top: 0; }
+  .scan { display: grid; grid-template-columns: 5fr 7fr; gap: 44px; align-items: start; }
+  @media (max-width: 860px) { .scan { grid-template-columns: 1fr; gap: 24px; } }
+  .frame { background: #fff; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; line-height: 0; }
   .frame img { width: 100%; height: auto; display: block; }
-  figcaption { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+  figure { margin: 0; }
+  figcaption { font-size: 15px; color: var(--muted); line-height: 1.45; margin-top: 8px; }
+  .pair { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; margin-top: 28px; align-items: start; }
+  @media (max-width: 600px) { .pair { grid-template-columns: 1fr; } }
 
-  /* Live repos */
-  .sub { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 44px 0 18px; flex-wrap: wrap; }
-  .sub h3 { font: 700 21px/1.2 var(--font-display); margin: 0; }
-  .repo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
-  .repo {
-    display: flex; flex-direction: column; gap: 10px; text-decoration: none;
-    background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 22px;
-    transition: border-color .15s, transform .15s, box-shadow .15s;
-  }
-  .repo:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
-  .repo h4 { margin: 0; font: 700 18px/1.2 var(--font-display); }
-  .repo p { margin: 0; color: var(--muted); font-size: 14.5px; flex: 1; }
-  .repo .meta { display: flex; gap: 12px; align-items: center; font-size: 13px; color: var(--muted); }
-  .repo .lang { display: inline-flex; align-items: center; gap: 6px; }
-  .repo .lang::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
-  .repo-note { color: var(--muted); font-size: 15px; background: var(--panel); border: 1px dashed var(--line); border-radius: 16px; padding: 22px 24px; }
-  .skeleton { height: 140px; border-radius: 16px; background: linear-gradient(90deg, #E9EEF6 25%, #F4F7FB 50%, #E9EEF6 75%) 0 0 / 200% 100%; animation: shimmer 1.4s infinite linear; }
-  @keyframes shimmer { to { background-position: -200% 0; } }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .rows li { display: grid; grid-template-columns: 5fr 7fr; gap: 44px; padding: 26px 0; border-top: 1px solid var(--rule); }
+  .rows li:last-child { border-bottom: 1px solid var(--rule); }
+  .rows p { margin: 0 0 8px; }
+  @media (max-width: 860px) { .rows li { grid-template-columns: 1fr; gap: 8px; } }
+  .sub { margin: 56px 0 18px; font: 700 22px/1.2 var(--display); }
 
-  /* Contact */
-  .contact-card {
-    background: var(--ink); color: #fff; border-radius: 24px; padding: 56px 48px;
-    display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap;
-  }
-  @media (max-width: 520px) { .contact-card { padding: 36px 26px; } }
-  .contact-card h2 { margin: 0 0 10px; color: #fff; }
-  .contact-card p { margin: 0; color: #B8C3D4; max-width: 46ch; }
-  .contact-card .btn { background: transparent; color: #fff; border-color: #3A475B; }
-  .contact-card .btn:hover { border-color: #fff; }
-  .contact-card .btn.primary { background: #fff; color: var(--ink); border-color: #fff; }
-  .contact-card .btn.primary:hover { background: var(--accent-soft); }
+  .about { display: grid; grid-template-columns: 7fr 5fr; gap: 56px; }
+  @media (max-width: 860px) { .about { grid-template-columns: 1fr; gap: 32px; } }
+  dl { margin: 0; }
+  dl div { padding: 14px 0; border-top: 1px solid var(--rule); }
+  dl div:last-child { border-bottom: 1px solid var(--rule); }
+  dt { font-size: 15px; color: var(--muted); }
+  dd { margin: 0; font-weight: 600; }
+  .skills dd { font-weight: 400; }
 
-  footer { padding: 32px 0 56px; color: var(--muted); font-size: 14px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .vf-box { animation: none; opacity: 1; }
-    .skeleton { animation: none; }
-    .btn, .repo { transition: none; }
-  }
+  .contact { background: var(--baby); margin-top: 72px; padding: 64px 0; }
+  .contact h2 { margin-bottom: 14px; }
+  .contact a { color: var(--ink); text-decoration-color: var(--link); font-weight: 600; }
+  footer { padding: 28px 0 44px; color: var(--muted); font-size: 15px; }
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="top">
-  <div class="wrap top-in">
-    <a class="brand" href="#top">Nathan Hall</a>
-    <nav class="main-nav" aria-label="Primary">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<header class="band" id="top">
+  <div class="wrap">
+    <div class="bar">
+      <a href="#top">Nathan Hall</a>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <h1>Nathan Hall</h1>
+    <p class="intro">Second-year Computer Science student at McMaster University. I build computer vision tools in Python and baseball analytics projects in R and Python.</p>
+    <p class="intro">I’m looking for a summer 2027 internship.</p>
+    <div class="links">
+      <a href="mailto:nathansh2007@gmail.com">Email</a>
+      <a href="https://github.com/nathan-haII" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/nathan-hall-7092602b7/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
   </div>
 </header>
 
 <main id="main">
-  <section class="hero" id="top">
-    <div class="wrap hero-grid">
-      <div>
-        <div class="status"><i></i>Open to internships</div>
-        <h1 class="name">Nathan Hall</h1>
-        <p class="role">Computer Science at McMaster University</p>
-        <p class="tagline">I build practical software and I'm working toward computer vision and anomaly detection, learning through data science fundamentals and hands-on OpenCV projects.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#projects">See my projects</a>
-          <a class="btn" href="mailto:nathansh2007@gmail.com">Email me</a>
-          <a class="btn" href="https://github.com/nathan-haII" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-
-      <div class="viewfinder" role="img" aria-label="Decorative illustration of an object detector drawing labeled boxes around text.">
-        <div class="vf-text">Teaching code<br>to notice<small>what doesn't belong</small></div>
-        <div class="vf-box b1"><span>focus 0.97</span></div>
-        <div class="vf-box b2"><span>anomaly 0.91</span></div>
-        <div class="vf-box b3"><span>student 0.99</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="block" id="about">
-    <div class="wrap about-grid">
-      <div>
-        <h2 class="title">About me</h2>
-        <p>I'm a Computer Science student at McMaster University, focused on building practical software and growing as an engineer. Most of my current work sits where computer vision meets data: I like taking a real-world input and writing code that turns it into something clean and structured.</p>
-        <p>I'm drawn to anomaly detection, where the interesting part is teaching a system to notice what doesn't belong. Outside of coursework I'm building a portfolio of small, complete projects rather than one big unfinished one.</p>
-      </div>
-      <aside class="facts">
-        <dl>
-          <div><dt>Studying</dt><dd>Computer Science, McMaster University</dd></div>
-          <div><dt>Interested in</dt><dd>Computer vision, anomaly detection, data science</dd></div>
-          <div><dt>Looking for</dt><dd>Internships on vision and data problems</dd></div>
-          <div><dt>Based in</dt><dd>Ontario, Canada</dd></div>
-        </dl>
-      </aside>
-    </div>
-  </section>
-
-  <section class="block" id="skills">
+  <section id="projects">
     <div class="wrap">
-      <h2 class="title">Skills</h2>
-      <p class="lead">What I reach for when I build.</p>
-      <div class="skills">
-        <div class="skill"><h3>Languages</h3><div class="chips"><span class="chip">Python</span><span class="chip">Java</span><span class="chip">C++</span><span class="chip">JavaScript</span></div></div>
-        <div class="skill"><h3>Computer vision and data</h3><div class="chips"><span class="chip">OpenCV</span><span class="chip">NumPy</span><span class="chip">scikit-image</span><span class="chip">scikit-learn</span><span class="chip">imutils</span><span class="chip">Matplotlib</span></div></div>
-        <div class="skill"><h3>Tools</h3><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span></div></div>
-      </div>
-    </div>
-  </section>
+      <h2>Projects</h2>
 
-  <section class="block" id="projects">
-    <div class="wrap">
-      <h2 class="title">Featured projects</h2>
-      <p class="lead">Small, complete projects that each solve one problem end to end.</p>
-
-      <article class="project">
+      <article class="work scan">
         <div>
           <h3>Document Scanner</h3>
-          <p>A Python command-line tool that turns a photo of a document into a clean, top-down, black-and-white scan. It finds the document's edges, corrects the perspective so the page looks flat and squared-off, then applies adaptive thresholding for a true "scanned" look.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">NumPy</span><span class="tag">scikit-image</span><span class="tag">imutils</span></div>
-          <a class="btn" href="https://github.com/nathan-haII" target="_blank" rel="noopener">View on GitHub</a>
+          <p>A Python command-line tool that turns a photo of a document into a clean, flat, black-and-white scan. It finds the document’s edges, corrects the perspective so the page looks squared off, then applies adaptive thresholding.</p>
+          <p class="built">Built with Python, OpenCV, NumPy, scikit-image and imutils.</p>
+          <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
         </div>
         <figure>
           <div class="frame"><img src="document-scanner-example.jpg" width="1000" height="729" loading="lazy" alt="Side-by-side comparison: a phone photo of a crumpled grocery receipt on a dark table, and the cleaned black-and-white top-down scan of it."></div>
-          <figcaption>Input photo (left) and scanned output (right).</figcaption>
+          <figcaption>Input photo on the left, scanned output on the right.</figcaption>
         </figure>
       </article>
 
-      <article class="project">
-        <div>
-          <h3>Ontario License Plate Scanner</h3>
-          <p>A classical computer-vision pipeline that finds and reads Ontario license plates in photos, with no deep learning. It localizes the plate with edge detection and connected components, segments characters with adaptive thresholding, and classifies each 20×20 crop with a Support Vector Classifier. A post-processing step uses the 4-letter, 3-digit plate format to fix confusable characters like 0/O and 5/S.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">scikit-image</span><span class="tag">scikit-learn</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div>
-          <a class="btn" href="https://github.com/nathan-haII/Ontario-License-Plate-Scanner" target="_blank" rel="noopener">View on GitHub</a>
-        </div>
-        <div class="figs two">
+      <article class="work">
+        <h3>Ontario License Plate Scanner</h3>
+        <p>A classical computer vision pipeline that finds and reads Ontario license plates in photos, with no deep learning. It locates the plate with edge detection and connected components, separates the characters with adaptive thresholding, and classifies each 20×20 crop with a support vector classifier. A final step uses the plate format of four letters followed by three digits to fix confusable characters such as 0 and O, or 5 and S.</p>
+        <p class="built">Built with Python, scikit-image, scikit-learn, NumPy and Matplotlib.</p>
+        <p><a href="https://github.com/nathan-haII/Ontario-License-Plate-Scanner" target="_blank" rel="noopener">View the code on GitHub</a></p>
+        <div class="pair">
           <figure>
             <div class="frame"><img src="plate-localization.png" width="340" height="419" loading="lazy" alt="Grayscale photo of the rear of an SUV with two red boxes drawn on it: one around the license plate and one around the badge above it."></div>
-            <figcaption>1. Localization. The badge is a false positive, so the pipeline keeps the region that yields 7 characters.</figcaption>
+            <figcaption>Localization. The badge is a false positive, so the pipeline keeps the region that yields seven characters.</figcaption>
           </figure>
           <figure>
             <div class="frame"><img src="plate-segmentation.png" width="549" height="250" loading="lazy" alt="Black-and-white thresholded crop of a license plate with red boxes around each of the seven characters."></div>
-            <figcaption>2. Segmentation. Seven characters are isolated and resized to 20×20 for the classifier.</figcaption>
+            <figcaption>Segmentation. Seven characters are isolated and resized to 20×20 for the classifier.</figcaption>
           </figure>
         </div>
       </article>
 
-      <div class="sub">
-        <h3>Latest from GitHub</h3>
-        <a class="btn" href="https://github.com/nathan-haII?tab=repositories" target="_blank" rel="noopener">All repositories</a>
-      </div>
-      <div id="repos" class="repo-grid" aria-live="polite">
-        <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
-      </div>
+      <h3 class="sub">Baseball analytics</h3>
+      <ul class="rows">
+        <li>
+          <div>
+            <h3>Blue Jays xwOBA tracker</h3>
+            <p class="built">R, SQLite, SQL, Shiny</p>
+          </div>
+          <div>
+            <p>Compares each hitter’s actual wOBA with the wOBA his batted balls suggest, tests whether that gap carries over to the next season, and compares predictors on a held-out season. Includes a Shiny app for exploring the results by player.</p>
+            <!-- Replace this link with the repository URL once it is published -->
+            <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
+          </div>
+        </li>
+        <li>
+          <div>
+            <h3>Pitch mix by count</h3>
+            <p class="built">Python, pandas, Streamlit</p>
+          </div>
+          <div>
+            <p>A web app where you pick a team and a pitcher and see what he throws when he is ahead, even or behind in the count, split by left- and right-handed hitters. It shows the number of pitches behind every bar so small samples are easy to spot.</p>
+            <!-- Replace this link with the repository URL or live app link -->
+            <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
+          </div>
+        </li>
+      </ul>
+
+      <h3 class="sub">Latest from GitHub</h3>
+      <div id="repos" aria-live="polite"><p>Loading repositories.</p></div>
+      <p><a href="https://github.com/nathan-haII?tab=repositories" target="_blank" rel="noopener">See all repositories</a></p>
     </div>
   </section>
 
-  <section class="block" id="contact">
-    <div class="wrap">
-      <div class="contact-card">
-        <div>
-          <h2 class="title">Let's work together</h2>
-          <p>I'm looking for internships and chances to work on computer vision and data problems. Send me a message.</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;">
-          <a class="btn primary" href="mailto:nathansh2007@gmail.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/nathan-hall-7092602b7/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="https://github.com/nathan-haII" target="_blank" rel="noopener">GitHub</a>
-        </div>
+  <section id="about">
+    <div class="wrap about">
+      <div>
+        <h2>About</h2>
+        <p>I’m a Computer Science student at McMaster University. Most of my projects start with a messy input, such as a photo of a receipt or a season of pitch data, and turn it into something clean and easy to read.</p>
+        <p>I’m interested in computer vision, anomaly detection and baseball analytics. I prefer finishing small, complete projects over leaving big ones half done, and I explain the limits of each one in its README.</p>
       </div>
+      <dl>
+        <div><dt>Studying</dt><dd>Computer Science, McMaster University</dd></div>
+        <div><dt>Interested in</dt><dd>Computer vision, anomaly detection, baseball analytics</dd></div>
+        <div><dt>Looking for</dt><dd>A summer 2027 internship</dd></div>
+        <div><dt>Based in</dt><dd>Ontario, Canada</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <dl class="skills">
+        <div><dt>Languages</dt><dd>Python, R, SQL, Java, C++, JavaScript</dd></div>
+        <div><dt>Computer vision and data</dt><dd>OpenCV, NumPy, pandas, scikit-image, scikit-learn, imutils, Matplotlib, Shiny, Streamlit</dd></div>
+        <div><dt>Tools</dt><dd>Git, GitHub</dd></div>
+      </dl>
     </div>
   </section>
 </main>
+
+<div class="contact" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>I’m looking for a summer 2027 internship working on computer vision, data or baseball analytics. Email is the quickest way to reach me.</p>
+    <p><a href="mailto:nathansh2007@gmail.com">nathansh2007@gmail.com</a>, <a href="https://www.linkedin.com/in/nathan-hall-7092602b7/" target="_blank" rel="noopener">LinkedIn</a>, <a href="https://github.com/nathan-haII" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</div>
 
 <footer><div class="wrap">© 2026 Nathan Hall</div></footer>
 
 <script>
 (function () {
-  var USER = 'nathan-haII';
   var box = document.getElementById('repos');
-  // Repos already featured above, forks, and housekeeping repos are skipped.
-  var SKIP = [/document.?scanner/i, /license.?plate/i, /readme/i, /\.github\.io$/i];
+  var skip = [/document.?scanner/i, /license.?plate/i, /readme/i, /\.github\.io$/i, /xwoba/i, /pitch.?mix/i];
 
-  function note(msg) {
-    box.className = '';
+  function show(text) {
     box.innerHTML = '';
-    var d = document.createElement('div');
-    d.className = 'repo-note';
-    d.textContent = msg;
-    box.appendChild(d);
+    var p = document.createElement('p');
+    p.textContent = text;
+    box.appendChild(p);
   }
 
-  function pretty(name) {
+  function title(name) {
     return name.replace(/[-_]+/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
   }
 
   function render(repos) {
     var list = repos.filter(function (r) {
-      return !r.fork && !r.archived && !SKIP.some(function (re) { return re.test(r.name); });
-    }).slice(0, 6);
+      return !r.fork && !r.archived && !skip.some(function (re) { return re.test(r.name); });
+    }).slice(0, 5);
+    if (!list.length) { show('No other public repositories yet.'); return; }
 
-    if (!list.length) { note('New projects are on the way. Check GitHub for the latest.'); return; }
-
-    box.className = 'repo-grid';
-    box.innerHTML = '';
+    var ul = document.createElement('ul');
+    ul.className = 'rows';
     list.forEach(function (r) {
+      var li = document.createElement('li');
+      var left = document.createElement('div');
+      var h = document.createElement('h3');
       var a = document.createElement('a');
-      a.className = 'repo'; a.href = r.html_url; a.target = '_blank'; a.rel = 'noopener';
-      var h = document.createElement('h4'); h.textContent = pretty(r.name);
-      var p = document.createElement('p'); p.textContent = r.description || 'No description yet.';
-      var m = document.createElement('div'); m.className = 'meta';
-      if (r.language) { var l = document.createElement('span'); l.className = 'lang'; l.textContent = r.language; m.appendChild(l); }
-      var u = document.createElement('span');
-      u.textContent = 'Updated ' + new Date(r.pushed_at).toLocaleDateString('en-CA', { year: 'numeric', month: 'short' });
-      m.appendChild(u);
-      a.appendChild(h); a.appendChild(p); a.appendChild(m);
-      box.appendChild(a);
+      a.href = r.html_url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = title(r.name);
+      h.appendChild(a); left.appendChild(h);
+      if (r.language) {
+        var lang = document.createElement('p');
+        lang.className = 'built'; lang.textContent = r.language;
+        left.appendChild(lang);
+      }
+      var right = document.createElement('div');
+      var d = document.createElement('p');
+      d.textContent = r.description || 'No description yet.';
+      right.appendChild(d);
+      li.appendChild(left); li.appendChild(right);
+      ul.appendChild(li);
     });
+    box.innerHTML = '';
+    box.appendChild(ul);
   }
 
   var cached = null;
   try { cached = JSON.parse(sessionStorage.getItem('repos') || 'null'); } catch (e) {}
   if (cached) { render(cached); return; }
 
-  fetch('https://api.github.com/users/' + USER + '/repos?sort=pushed&per_page=30')
+  fetch('https://api.github.com/users/nathan-haII/repos?sort=pushed&per_page=30')
     .then(function (res) { if (!res.ok) throw new Error(res.status); return res.json(); })
     .then(function (data) {
       try { sessionStorage.setItem('repos', JSON.stringify(data)); } catch (e) {}
       render(data);
     })
-    .catch(function () { note('Couldn\'t load repositories right now. See everything on GitHub using the button above.'); });
-})();
-
-// Highlight the nav link for the section in view
-(function () {
-  var links = document.querySelectorAll('nav.main-nav a');
-  if (!('IntersectionObserver' in window)) return;
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) {
-        links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
-      }
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  ['about', 'skills', 'projects', 'contact'].forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
+    .catch(function () { show('Repositories could not be loaded. Use the link below to see them on GitHub.'); });
 })();
 </script>
 </body>
