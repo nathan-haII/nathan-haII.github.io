@@ -58,7 +58,8 @@
   figure { margin: 0; }
   figcaption { font-size: 15px; color: var(--muted); line-height: 1.45; margin-top: 8px; }
   .pair { display: grid; grid-template-columns: 1fr 1.6fr; gap: 24px; margin-top: 28px; align-items: start; }
-  @media (max-width: 600px) { .pair { grid-template-columns: 1fr; } }
+  .pair.even { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 600px) { .pair, .pair.even { grid-template-columns: 1fr; } }
 
   .rows { list-style: none; margin: 0; padding: 0; }
   .rows li { display: grid; grid-template-columns: 5fr 7fr; gap: 44px; padding: 26px 0; border-top: 1px solid var(--rule); }
@@ -112,6 +113,41 @@
     <div class="wrap">
       <h2>Projects</h2>
 
+      <article class="work">
+        <div class="scan">
+          <div>
+            <h3>Blue Jays xwOBA tracker</h3>
+            <p>Compares each Blue Jays hitter’s actual wOBA with the wOBA his batted balls suggest (xwOBA), tests whether that gap carries over to the next season, and checks which stat predicts next season’s wOBA best. The pipeline downloads Baseball Savant and MLB Stats API data, cleans it, loads it into a SQLite database, uses SQL to pair each hitter’s season with the next, and scores the models on a held-out season. A Shiny app lets you explore every hitter.</p>
+            <p>Across 2,422 hitter-season pairs, the gap carried over with a slope of 0.22 and an R² of 0.05, so most of it is noise. A blend of last season’s wOBA and xwOBA had the lowest error when tested on the 2025 to 2026 seasons.</p>
+            <p class="built">Built with R, SQL (SQLite), the tidyverse and Shiny.</p>
+            <!-- Replace this link with the repository URL once it is published -->
+            <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
+          </div>
+          <figure>
+            <div class="frame"><img src="xwoba-team.png" width="1500" height="713" loading="lazy" alt="Shiny app screenshot: a horizontal bar chart of 2026 Blue Jays hitters ranked by actual minus expected wOBA, with blue bars above zero and red bars below."></div>
+            <figcaption>The team view. Each bar is a 2026 Blue Jays hitter’s actual wOBA minus expected wOBA. Blue bars beat their quality of contact and red bars fell short.</figcaption>
+          </figure>
+        </div>
+        <div class="pair even">
+          <figure>
+            <div class="frame"><img src="xwoba-player.png" width="1500" height="787" loading="lazy" alt="Shiny app screenshot: a line chart of one hitter’s wOBA and xwOBA by season, with a table of batted balls, wOBA, xwOBA and gap below it."></div>
+            <figcaption>The player view shows wOBA and xwOBA by season, with a projection for next season.</figcaption>
+          </figure>
+          <figure>
+            <div class="frame"><img src="xwoba-model.png" width="1500" height="401" loading="lazy" alt="Shiny app screenshot: a table comparing four predictors of next-season wOBA by error, above a sentence describing the test and the 2,422 hitter-season pairs."></div>
+            <figcaption>The model tab compares four ways of predicting next season’s wOBA and reports how much the gap carried over.</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="work">
+        <h3>Pitch mix by count</h3>
+        <p>A web app where you pick a team and a pitcher and see what he throws when he is ahead, even or behind in the count, split by left- and right-handed hitters. It shows the number of pitches behind every bar so small samples are easy to spot.</p>
+        <p class="built">Built with Python, pandas and Streamlit.</p>
+        <!-- Replace this link with the repository URL or the live app link -->
+        <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
+      </article>
+
       <article class="work scan">
         <div>
           <h3>Document Scanner</h3>
@@ -141,32 +177,6 @@
           </figure>
         </div>
       </article>
-
-      <h3 class="sub">Baseball analytics</h3>
-      <ul class="rows">
-        <li>
-          <div>
-            <h3>Blue Jays xwOBA tracker</h3>
-            <p class="built">R, SQLite, SQL, Shiny</p>
-          </div>
-          <div>
-            <p>Compares each hitter’s actual wOBA with the wOBA his batted balls suggest, tests whether that gap carries over to the next season, and compares predictors on a held-out season. Includes a Shiny app for exploring the results by player.</p>
-            <!-- Replace this link with the repository URL once it is published -->
-            <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h3>Pitch mix by count</h3>
-            <p class="built">Python, pandas, Streamlit</p>
-          </div>
-          <div>
-            <p>A web app where you pick a team and a pitcher and see what he throws when he is ahead, even or behind in the count, split by left- and right-handed hitters. It shows the number of pitches behind every bar so small samples are easy to spot.</p>
-            <!-- Replace this link with the repository URL or live app link -->
-            <p><a href="https://github.com/nathan-haII" target="_blank" rel="noopener">View the code on GitHub</a></p>
-          </div>
-        </li>
-      </ul>
 
       <h3 class="sub">Latest from GitHub</h3>
       <div id="repos" aria-live="polite"><p>Loading repositories.</p></div>
